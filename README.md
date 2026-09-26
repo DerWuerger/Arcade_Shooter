@@ -49,7 +49,7 @@ The checked-in `gameplay_config.json` is a **template/sample payload**; `/Game/T
 ### Schema conventions (required)
 
 - Every `id` value is unique within its section.
-- Current asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each uses Unreal object path format (`/Game/Folder/Asset.Asset`). Template/sample values can be placeholders, but production values must resolve in content. If new path-based fields are added, extend this list and apply the same rule.
+- Current asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each stores an Unreal **asset object path** (`/Game/Folder/Asset.Asset`) rather than a generated class path. Template/sample values can be placeholders, but production values must resolve in content. If new path-based fields are added, extend this list and apply the same rule.
 - `input_profiles[].device_type` identifies control schemes (current: `gamepad`; future-extensible for `lightgun`).
 - `input_profiles[].bindings` values use canonical Unreal key identifiers (example: `Gamepad_RightTrigger`) rather than platform-specific shorthand.
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
