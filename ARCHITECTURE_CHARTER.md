@@ -1848,3 +1848,11 @@ Der Status muss ohne Freigabe beispielsweise lauten:
 Eine Version gilt ausschließlich nach ausdrücklicher Freigabe durch die Projektleitung Jens Würger als abgeschlossen. Technische Fertigstellung, erfolgreiche Tests, Commits, Merges oder vorbereitete GitHub Releases ersetzen diese Freigabe nicht. Bis zur ausdrücklichen Freigabe bleibt der jeweilige Stand ein Entwicklungsstand oder Release Candidate.
 
 ---
+
+# 57. Freigabeprotokoll
+
+## 2026-09-26 – Architecture Charter Update
+
+Die Ergänzung des `Progression & Economy System` wurde durch die Projektleitung Jens Würger ausdrücklich freigegeben.
+
+Diese Freigabe bestätigt die Architekturänderung, stellt jedoch keine Versionsfreigabe, keinen Release und keinen Start von `0.0.1 – Core Rail Prototype` dar.

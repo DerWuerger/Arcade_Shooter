@@ -7,6 +7,10 @@ Status: Project Architecture / Pre-Prototype
 Approval Status:
 Not yet released
 
+Project Lead Review:
+Architecture Charter update approved by Jens Würger on 2026-09-26.
+This approval does not release or complete version 0.0.1.
+
 Project Approval Authority:
 Jens Würger
 
