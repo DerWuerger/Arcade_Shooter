@@ -57,7 +57,8 @@ The checked-in `gameplay_config.json` is a **template/sample payload**; `/Game/T
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
 - `pickups` are interpreted from typed `effects` keys (`health_delta`, `credits_delta`) to keep one source of truth.
 - `economy.weapon_upgrade_scalars` is an array of `{ level, scalar }` entries and consumers should key by `level` (not position).
+- `weapons[].upgradeable` and `weapons[].max_upgrade_level` define whether upgrades apply and the highest valid level for that weapon.
 - Only `character_styles`, `hud_themes`, and `pickups` carry presentation asset-path fields in this contract by design; enemy/boss presentation remains in Blueprint/content composition outside this gameplay payload.
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
 - `progression.levels` is sorted by ascending `level` with non-decreasing `xp_required`.
-- Boss `phases` are sorted by descending `trigger_health_percent` (1.0 to 0.0); the `1.0` entry is the initial/default phase, and each subsequent phase triggers when health drops to or below its threshold.
+- Boss `phases` are sorted by descending `trigger_health_percent` (1.0 to 0.0); each boss must include exactly one `1.0` initial/default phase. For lower thresholds, the first phase whose threshold is `>= current_health_percent` remains active (ties are invalid and should be rejected).
