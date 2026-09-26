@@ -113,7 +113,6 @@
   "pickups": [
     {
       "id": "pickup_health_small",
-      "type": "health",
       "effects": {
         "health_delta": 20.0
       },
@@ -121,7 +120,6 @@
     },
     {
       "id": "pickup_credit_cache",
-      "type": "currency",
       "effects": {
         "credits_delta": 50
       },
@@ -147,10 +145,19 @@
   "economy": {
     "starting_credits": 0,
     "retry_cost": 100,
-    "weapon_upgrade_scalars": {
-      "0": 1.0,
-      "1": 1.3,
-      "2": 1.7
-    }
+    "weapon_upgrade_scalars": [
+      {
+        "level": 0,
+        "scalar": 1.0
+      },
+      {
+        "level": 1,
+        "scalar": 1.3
+      },
+      {
+        "level": 2,
+        "scalar": 1.7
+      }
+    ]
   }
 }
