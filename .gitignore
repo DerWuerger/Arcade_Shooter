@@ -1,0 +1,58 @@
+# Unreal Engine generated folders
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Unreal local build artifacts
+Build/Receipts/
+Build/*/FileOpenOrder/
+*.target
+*.modules
+*.version
+
+# Visual Studio / Rider / IDE caches
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Build outputs and compiled objects
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.iobj
+*.ipdb
+*.dll
+*.exe
+*.lib
+*.exp
+*.app
+
+# Unreal automation and logs
+*.log
+*.tmp
+*.tlog
+AutomationTool/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Keep project sources, config, content, and documentation versionable.
+!*.uproject
+!Config/
+!Content/
+!Source/
+!Plugins/
+!ARCHITECTURE_CHARTER.md
+!ROADMAP.md
+!VERSION.md
+!README.md
