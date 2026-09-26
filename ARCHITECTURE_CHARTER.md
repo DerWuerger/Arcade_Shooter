@@ -151,6 +151,7 @@ Game
 │   ├── Difficulty Rewards
 │   ├── Achievement Rewards
 │   ├── Ownership Data
+│   ├── Equipped Loadout
 │   └── Save / Profile Integration
 │
 ├── Character Visual System
@@ -1058,6 +1059,7 @@ Progression & Economy System
 ├── Difficulty Rewards
 ├── Achievement Rewards
 ├── Ownership Data
+├── Equipped Loadout
 └── Save / Profile Integration
 ```
 
@@ -1075,6 +1077,8 @@ Das Economy-System darf nicht direkt:
 * Enemy Health verändern
 * Treffer auswerten
 * Rail Movement steuern
+* Hit Detection durchführen
+* Ammo-Verbrauch berechnen
 * Difficulty verändern
 
 ---
@@ -1097,8 +1101,8 @@ Weapon Skins
 Crosshair Styles
 HUD Themes
 Audio Themes
-Character Styles
-weitere langfristige Unlocks
+Character Visual Styles
+Permanent Unlocks
 ```
 
 Diese Inhalte können dauerhaft freigeschaltet bzw. gekauft werden.
@@ -1138,6 +1142,36 @@ Eine Freischaltung bedeutet nicht automatisch Besitz. Besitz und aktuell ausgew�
 Beispiel:
 
 ```text
+Weapon: Magnum
+
+Unlock Requirement:
+Complete Level 2
+
+Shop Price:
+2500 Arcade Tokens
+
+Unlocked:
+true
+
+Owned:
+false
+```
+
+Inhalte sollen je nach Data-Konfiguration beispielsweise:
+
+* standardmäßig verfügbar sein
+* direkt als Reward vergeben werden
+* durch Level Completion freigeschaltet werden
+* durch Difficulty Completion freigeschaltet werden
+* durch Challenges freigeschaltet werden
+* nach Freischaltung im Shop kaufbar werden
+* ausschließlich als Challenge Reward erhältlich sein
+
+Keine einzelne Methode darf im Core-System fest vorausgesetzt werden.
+
+Beispiel:
+
+```text
 Owned:
 Shirt_Red
 Shirt_Blue
@@ -1147,7 +1181,7 @@ Equipped:
 Shirt_Blue
 ```
 
-Dasselbe gilt für Weapons, Cosmetics, Crosshairs, HUD Themes, Audio Themes und Character Styles.
+Dasselbe gilt für Weapons, Cosmetics, Crosshairs, HUD Themes, Audio Themes und Character Visual Styles.
 
 ---
 
@@ -1171,11 +1205,13 @@ Die initiale Economy wird vollständig als erspielbares Ingame-System entwickelt
 
 ## 37a.4 Shop System
 
-Der Shop soll perspektivisch unterschiedliche Kategorien unterstützen können: Weapons, Character Cosmetics, Shirts, Colors, Accessories, Weapon Skins, Crosshair Styles, HUD Themes, Audio Themes und Special Unlocks.
+Der Shop soll perspektivisch unterschiedliche Kategorien unterstützen können: Weapons, Character Cosmetics, T-Shirts, Colors, Accessories, Weapon Skins, Crosshair Styles, HUD Themes, Audio Themes und Special Unlocks.
 
 Das Shop-System darf nicht direkt wissen, wie ein gekaufter Gegenstand dargestellt wird.
 
-Es verwaltet primär Item ID, Unlock State, Ownership State, Price, Currency Type, Requirements, Availability und Purchase Rules.
+Es verwaltet primär Item ID, Category, Unlock State, Ownership State, Price, Currency Type, Requirements, Availability und Purchase Rules.
+
+Es darf nicht selbst Weapon Damage, Enemy Stats oder vergleichbare Gameplay-Werte berechnen.
 
 Shop-Preise, Anforderungen und Verfügbarkeit bleiben datengetrieben.
 
@@ -1203,9 +1239,19 @@ Nicht unterstützte Kombinationen dürfen nicht zu kaputten Referenzen oder Game
 
 Waffen müssen in das Progression-System integrierbar sein.
 
-Dabei bleiben Weapon Gameplay Data, Weapon Visual Data, Unlock Requirement, Purchase Requirement, Ownership und Equipped Loadout getrennt.
+Dabei bleiben Weapon Gameplay Data, Weapon Visual Data, Unlock Requirement, Purchase Requirement, Ownership State und Equipped Loadout getrennt.
 
-Die Waffenwerte selbst bleiben weiterhin Bestandteil des Weapon Systems und dürfen nicht in das Shop-System verschoben werden.
+Beispiel:
+
+```text
+WeaponId = Magnum
+
+UnlockRequirement = CompleteLevel2
+PurchasePrice = 2500 ArcadeTokens
+Owned = false
+```
+
+Weapon Damage, Fire Rate, Magazine Size und andere Waffenwerte bleiben Bestandteil des Weapon Systems und dürfen nicht in das Shop-System verschoben werden.
 
 Die Architecture Charter legt nicht fest, dass jede starke Waffe gekauft werden muss. Progression darf Skill-based Unlock, Level Completion, Challenge Completion, Difficulty Completion, Shop Purchase und Reward Grant flexibel kombinieren.
 
@@ -1225,11 +1271,11 @@ Gameplay oder Challenge-System melden lediglich, dass eine Bedingung erfüllt wu
 
 ## 37a.8 Player Profile / Ownership Data
 
-Das Progression-System benötigt eine klare Trennung zwischen Definition Data und Player-owned State.
+Das Progression-System benötigt eine klare Trennung zwischen Definition Data und Player/Profile State.
 
-Definition Data beschreibt beispielsweise Item, Preis, Unlock Condition und Kategorie.
+Definition Data beschreibt beispielsweise Item Definition, Price, Unlock Condition, Category, Supported Styles und Reward Definition.
 
-Player-owned State beschreibt beispielsweise Unlocked, Owned, Equipped, Currency Balance und Completed Challenges.
+Player/Profile State beschreibt beispielsweise Unlocked, Owned, Equipped, Currency Balance, Completed Challenges, Achievements und Progression Status.
 
 Diese Daten dürfen nicht miteinander vermischt werden.
 
@@ -1243,9 +1289,15 @@ Welche Variante später Standard wird, ist offen.
 
 ## 37a.9 UI- und Shop-Darstellung
 
-Das Progression-System liefert Daten wie ArcadeTokens, Owned und Price.
+Das Progression-System liefert Daten wie:
 
-Das HUD-/Menu-Theme entscheidet über Font, Shop Layout, Icons, Farben, Animationen, Sound und Darstellung von Locked / Owned / Equipped.
+```text
+ArcadeTokens = 2750
+Owned = true
+Price = 750
+```
+
+Das HUD-/Menu-Theme entscheidet über Font, Layout, Icons, Farben, Animationen, Sounds und Darstellung von Locked / Owned / Equipped.
 
 Auch der spätere Shop muss die modulare UI-/HUD-Architektur respektieren.
 
@@ -1568,14 +1620,14 @@ Codex muss bei allen zukünftigen Implementierungen prüfen:
 * Sind Weapons datengetrieben?
 * Können Character Styles später ausgetauscht werden?
 * Können HUD Themes später ausgetauscht werden?
-* Ist Permanent Progression von Level Pickups getrennt?
-* Sind Unlock und Ownership getrennte Zustände?
+* Ist Permanent Progression von Run Items getrennt?
+* Sind Unlock und Ownership getrennt?
 * Ist Ownership vom Equipped State getrennt?
 * Ist Currency datengetrieben?
 * Sind Shop-Preise datengetrieben?
 * Sind Unlock Conditions datengetrieben?
 * Sind Rewards datengetrieben?
-* Ist Progression unabhängig vom Character Style?
+* Ist Progression unabhängig vom Character Visual Style?
 * Ist Progression unabhängig vom HUD Theme?
 * Berücksichtigt Progression die geplante Zwei-Spieler-Architektur?
 * Werden Player/Profile Ownership sauber behandelt?
@@ -1628,8 +1680,9 @@ Wenn ein zukünftiger Auftrag im Widerspruch zur Charter steht, soll Codex den K
 * Permanent Progression und Level Pickups bleiben getrennt
 * Ownership und Equipped State bleiben getrennt
 * Cosmetics sollen Visual-Style-unabhängig definierbar sein
-* Progression muss später speicherbar sein
+* Progression wird später persistent gespeichert
 * Zwei-Spieler-/Profil-Frage bleibt modular
+* Echtgeld ist keine Core-Voraussetzung
 * Maus und Controller zuerst
 * Lightgun später
 * Wiimote / DolphinBar optional
@@ -1671,7 +1724,7 @@ Noch nicht endgültig festlegen:
 * konkrete Weapon Unlocks
 * Challenge-Katalog
 * Achievement-System
-* gemeinsames oder getrenntes Progression-Profil im Zwei-Spieler-Modus
+* Shared oder getrennte Progression im Zwei-Spieler-Modus
 * konkrete Save-Game-Struktur
 * Umfang des Shops
 * genaue Loadout-Regeln
