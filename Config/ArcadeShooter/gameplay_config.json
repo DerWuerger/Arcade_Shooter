@@ -29,24 +29,24 @@
     {
       "id": "pilot_classic",
       "display_name": "Pilot Classic",
-      "presentation_asset_path": "/Game/Characters/PilotClassic"
+      "presentation_asset_path": "/Game/Characters/PilotClassic.PilotClassic"
     },
     {
       "id": "pilot_neon",
       "display_name": "Pilot Neon",
-      "presentation_asset_path": "/Game/Characters/PilotNeon"
+      "presentation_asset_path": "/Game/Characters/PilotNeon.PilotNeon"
     }
   ],
   "hud_themes": [
     {
       "id": "hud_arcade_default",
       "display_name": "Arcade Default",
-      "widget_theme_path": "/Game/UI/HUD/ArcadeDefault"
+      "widget_theme_path": "/Game/UI/HUD/ArcadeDefault.ArcadeDefault"
     },
     {
       "id": "hud_minimal",
       "display_name": "Minimal",
-      "widget_theme_path": "/Game/UI/HUD/Minimal"
+      "widget_theme_path": "/Game/UI/HUD/Minimal.Minimal"
     }
   ],
   "difficulty_presets": [
@@ -113,13 +113,13 @@
       "id": "pickup_health_small",
       "type": "health",
       "value": 20.0,
-      "presentation_asset_path": "/Game/Pickups/HealthSmall"
+      "presentation_asset_path": "/Game/Pickups/HealthSmall.HealthSmall"
     },
     {
       "id": "pickup_credit_cache",
       "type": "currency",
       "value": 50,
-      "presentation_asset_path": "/Game/Pickups/CreditCache"
+      "presentation_asset_path": "/Game/Pickups/CreditCache.CreditCache"
     }
   ],
   "progression": {
