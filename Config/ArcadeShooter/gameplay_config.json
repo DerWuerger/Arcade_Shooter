@@ -27,12 +27,12 @@
     {
       "id": "hud_arcade_default",
       "display_name": "Arcade Default",
-      "widget_theme_path": "/Game/TEMPLATE/UI/HUD/ArcadeDefault.ArcadeDefault"
+      "widget_theme_path": "/Game/TEMPLATE/UI/HUD/ArcadeDefault.ArcadeDefault_C"
     },
     {
       "id": "hud_minimal",
       "display_name": "Minimal",
-      "widget_theme_path": "/Game/TEMPLATE/UI/HUD/Minimal.Minimal"
+      "widget_theme_path": "/Game/TEMPLATE/UI/HUD/Minimal.Minimal_C"
     }
   ],
   "difficulty_presets": [
