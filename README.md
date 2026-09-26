@@ -53,7 +53,6 @@ The checked-in `gameplay_config.json` is a **template/sample payload**; `/Game/T
 - `input_profiles[].device_type` identifies control schemes (current: `gamepad`; future-extensible for `lightgun`).
 - `input_profiles[].bindings` values use canonical Unreal key identifiers (example: `Gamepad_RightTrigger`) rather than platform-specific shorthand.
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
-- `pickups` use typed `effects` payloads (for example `health_delta`, `credits_delta`) instead of a single polymorphic numeric field.
 - `pickups` are interpreted from typed `effects` keys (`health_delta`, `credits_delta`) to keep one source of truth.
 - `economy.weapon_upgrade_scalars` is an array of `{ level, scalar }` entries and consumers should key by `level` (not position).
 - Only `character_styles`, `hud_themes`, and `pickups` carry presentation asset-path fields in this contract by design; enemy/boss presentation remains in Blueprint/content composition outside this gameplay payload.
