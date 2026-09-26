@@ -1,7 +1,7 @@
 {
   "contract_rules": {
     "ids_are_unique_per_section": true,
-    "asset_paths_must_be_valid_unreal_references": true,
+    "asset_path_fields_must_be_valid_unreal_references": true,
     "progression_levels_sorted_by_level_ascending": true,
     "progression_xp_required_non_decreasing": true,
     "boss_phases_sorted_by_trigger_health_percent_descending": true,
@@ -96,12 +96,12 @@
       "base_health": 2000.0,
       "phases": [
         {
-          "phase_id": "phase_1",
+          "id": "phase_1",
           "trigger_health_percent": 1.0,
           "attack_profile": "spread_fire"
         },
         {
-          "phase_id": "phase_2",
+          "id": "phase_2",
           "trigger_health_percent": 0.5,
           "attack_profile": "missile_barrage"
         }
