@@ -53,6 +53,7 @@ Future lightgun support is added by introducing `input_profiles` entries with `d
 - `input_profiles[].bindings` values use canonical Unreal key identifiers (example: `Gamepad_RightTrigger`) rather than platform-specific shorthand.
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
 - `pickups` use typed `effects` payloads (for example `health_delta`, `credits_delta`) instead of a single polymorphic numeric field.
+- `pickups[].type` is a category discriminator and must match allowed effect keys (`health -> health_delta`, `currency -> credits_delta`) to keep one consistent interpretation.
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
 - `progression.levels` is sorted by ascending `level` with non-decreasing `xp_required`.
 - Boss `phases` are sorted by descending `trigger_health_percent` (1.0 to 0.0), with each next phase triggering when health drops to or below its threshold.
