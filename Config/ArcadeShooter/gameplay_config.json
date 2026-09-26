@@ -11,7 +11,6 @@
     {
       "id": "gamepad_default",
       "device_type": "gamepad",
-      "supports_lightgun": false,
       "bindings": {
         "fire": "RT",
         "alt_fire": "LT",
@@ -20,13 +19,6 @@
       }
     }
   ],
-  "planned_input_extensions": {
-    "future_device_types": [
-      {
-        "id": "lightgun"
-      }
-    ]
-  },
   "character_styles": [
     {
       "id": "pilot_classic",

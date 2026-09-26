@@ -30,7 +30,6 @@ The repository includes a single configuration template at:
 This file defines structured data blocks for:
 
 - `input_profiles`
-- `planned_input_extensions` (future device support declarations, e.g. lightgun)
 - `character_styles`
 - `hud_themes`
 - `difficulty_presets`
@@ -44,11 +43,13 @@ This file defines structured data blocks for:
 - `economy`
 
 Use this as the canonical contract when wiring UE5 DataAssets/DataTables and Blueprint-level presentation.
+Future lightgun support is added by introducing `input_profiles` entries with `device_type: "lightgun"` once runtime input handling is implemented.
 
 ### Schema conventions (required)
 
 - Every `id` value is unique within its section.
 - Asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each uses Unreal object path format (`/Game/Folder/Asset.Asset`) and must resolve in content.
+- `input_profiles[].device_type` identifies control schemes (current: `gamepad`; future-extensible for `lightgun`).
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
 - `progression.levels` is sorted by ascending `level` with non-decreasing `xp_required`.
