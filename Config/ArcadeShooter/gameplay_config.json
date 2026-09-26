@@ -18,19 +18,13 @@
         "bomb": "RB",
         "interact": "X"
       }
-    },
-    {
-      "id": "lightgun_future",
-      "device_type": "lightgun",
-      "supports_lightgun": true,
-      "bindings": {
-        "fire": "trigger",
-        "alt_fire": "button_a",
-        "bomb": "button_b",
-        "interact": "pump"
-      }
     }
   ],
+  "planned_input_extensions": {
+    "future_device_types": [
+      "lightgun"
+    ]
+  },
   "character_styles": [
     {
       "id": "pilot_classic",

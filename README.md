@@ -30,6 +30,7 @@ The repository includes a single configuration template at:
 This file defines structured data blocks for:
 
 - `input_profiles`
+- `planned_input_extensions` (future device support declarations, e.g. lightgun)
 - `character_styles`
 - `hud_themes`
 - `difficulty_presets`
