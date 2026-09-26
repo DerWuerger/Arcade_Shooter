@@ -22,7 +22,9 @@
   ],
   "planned_input_extensions": {
     "future_device_types": [
-      "lightgun"
+      {
+        "id": "lightgun"
+      }
     ]
   },
   "character_styles": [

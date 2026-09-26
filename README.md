@@ -48,7 +48,7 @@ Use this as the canonical contract when wiring UE5 DataAssets/DataTables and Blu
 ### Schema conventions (required)
 
 - Every `id` value is unique within its section.
-- Any `*_path` field (for example `presentation_asset_path` and `widget_theme_path`) uses Unreal object path format (`/Game/Folder/Asset.Asset`) and must resolve in content.
+- Asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each uses Unreal object path format (`/Game/Folder/Asset.Asset`) and must resolve in content.
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
 - `progression.levels` is sorted by ascending `level` with non-decreasing `xp_required`.
