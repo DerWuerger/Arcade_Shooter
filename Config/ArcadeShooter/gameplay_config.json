@@ -4,10 +4,10 @@
       "id": "gamepad_default",
       "device_type": "gamepad",
       "bindings": {
-        "fire": "RT",
-        "alt_fire": "LT",
-        "bomb": "RB",
-        "interact": "X"
+        "fire": "Gamepad_RightTrigger",
+        "alt_fire": "Gamepad_LeftTrigger",
+        "bomb": "Gamepad_RightShoulder",
+        "interact": "Gamepad_FaceButton_Left"
       }
     }
   ],
@@ -114,13 +114,17 @@
     {
       "id": "pickup_health_small",
       "type": "health",
-      "value": 20.0,
+      "effects": {
+        "health_delta": 20.0
+      },
       "presentation_asset_path": "/Game/TEMPLATE/Pickups/HealthSmall.HealthSmall"
     },
     {
       "id": "pickup_credit_cache",
       "type": "currency",
-      "value": 50,
+      "effects": {
+        "credits_delta": 50
+      },
       "presentation_asset_path": "/Game/TEMPLATE/Pickups/CreditCache.CreditCache"
     }
   ],
