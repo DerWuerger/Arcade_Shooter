@@ -3,6 +3,10 @@ Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
+*/Binaries/
+*/DerivedDataCache/
+*/Intermediate/
+*/Saved/
 
 # Unreal local build artifacts
 Build/Receipts/
