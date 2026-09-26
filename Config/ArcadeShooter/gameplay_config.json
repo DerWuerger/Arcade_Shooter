@@ -1,4 +1,12 @@
 {
+  "contract_rules": {
+    "ids_are_unique_per_section": true,
+    "asset_paths_must_be_valid_unreal_references": true,
+    "progression_levels_sorted_by_level_ascending": true,
+    "progression_xp_required_non_decreasing": true,
+    "boss_phases_sorted_by_trigger_health_percent_descending": true,
+    "boss_phase_trigger_semantics": "phase activates when boss health percent is <= trigger_health_percent"
+  },
   "input_profiles": [
     {
       "id": "gamepad_default",
