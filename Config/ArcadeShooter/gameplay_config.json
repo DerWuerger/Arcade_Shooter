@@ -79,6 +79,22 @@
       "economy_unlock_cost": 0
     }
   ],
+  "ai_profiles": [
+    {
+      "id": "strafe_and_fire",
+      "description": "Moves laterally and fires short bursts."
+    }
+  ],
+  "attack_profiles": [
+    {
+      "id": "spread_fire",
+      "description": "Wide cone projectile spread."
+    },
+    {
+      "id": "missile_barrage",
+      "description": "Timed missile salvo pattern."
+    }
+  ],
   "enemies": [
     {
       "id": "drone_basic",
