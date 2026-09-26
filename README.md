@@ -46,7 +46,7 @@ Use this as the canonical contract when wiring UE5 DataAssets/DataTables and Blu
 ### Schema conventions (required)
 
 - Every `id` value is unique within its section.
-- `presentation_asset_path` / `widget_theme_path` values use Unreal object path format (`/Game/Folder/Asset.Asset`) and must resolve in content.
+- Any `*_path` field (for example `presentation_asset_path` and `widget_theme_path`) uses Unreal object path format (`/Game/Folder/Asset.Asset`) and must resolve in content.
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
 - `progression.levels` is sorted by ascending `level` with non-decreasing `xp_required`.
 - Boss `phases` are sorted by descending `trigger_health_percent` (1.0 to 0.0), with each next phase triggering when health drops to or below its threshold.
