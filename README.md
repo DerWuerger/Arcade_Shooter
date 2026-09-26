@@ -25,7 +25,7 @@
 
 The repository includes a single configuration template at:
 
-- `/home/runner/work/Arcade_Shooter/Arcade_Shooter/Config/ArcadeShooter/gameplay_config.json`
+- `Config/ArcadeShooter/gameplay_config.json`
 
 This file defines structured data blocks for:
 
