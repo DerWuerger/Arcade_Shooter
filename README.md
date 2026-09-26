@@ -48,7 +48,7 @@ Future lightgun support is added by introducing `input_profiles` entries with `d
 ### Schema conventions (required)
 
 - Every `id` value is unique within its section.
-- Asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each uses Unreal object path format (`/Game/Folder/Asset.Asset`). Template/sample values can be placeholders, but production values must resolve in content.
+- Current asset-path fields in this contract are `character_styles[].presentation_asset_path`, `hud_themes[].widget_theme_path`, and `pickups[].presentation_asset_path`; each uses Unreal object path format (`/Game/Folder/Asset.Asset`). Template/sample values can be placeholders, but production values must resolve in content. If new path-based fields are added, extend this list and apply the same rule.
 - `input_profiles[].device_type` identifies control schemes (current: `gamepad`; future-extensible for `lightgun`).
 - Non-path references use `id` lookups into registry sections (for example `enemies[].ai_profile -> ai_profiles[].id`, `bosses[].phases[].attack_profile -> attack_profiles[].id`).
 - `difficulty_presets`, `weapons`, `enemies`, `bosses`, and `pickups` are arrays; each entry has a unique `id` used for lookup/indexing.
