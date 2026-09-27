@@ -14,7 +14,7 @@ Required workflow for every future release `v<VERSION>`:
 4. Push `main` to `origin/main` without force-pushing.
 5. Create the version tag `v<VERSION>`.
 6. Push the version tag to `origin`.
-7. Create `E:\Projekt_Arcade_Shooter\Archive\v<VERSION>` from the published Git tag only.
+7. Create `D:\Projekt_Arcade_Shooter\Archive\v<VERSION>` from the published Git tag only.
 8. Do not copy the archive from the current working tree.
 9. Prefer `git -c core.autocrlf=false archive` so archived files match the tag blobs exactly on Windows.
 10. Add local-only `ARCHIVE_INFO.md` inside the archive folder with version, name, Git tag, full release commit hash, status, archive date, and immutable archive note.

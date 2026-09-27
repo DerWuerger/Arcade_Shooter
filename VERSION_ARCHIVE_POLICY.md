@@ -54,7 +54,7 @@ Codex muss diese Archivierung bei jedem zukünftigen offiziellen Versionsabschlu
 
 Die lokale Archivwurzel liegt unter:
 
-`E:\Projekt_Arcade_Shooter\Archive`
+`D:\Projekt_Arcade_Shooter\Archive`
 
 Jede offizielle Version erhält genau einen eigenen Ordner im Format:
 
@@ -68,9 +68,9 @@ Archive/
 
 Beispiele:
 
-* `E:\Projekt_Arcade_Shooter\Archive\v0.0.3`
-* `E:\Projekt_Arcade_Shooter\Archive\v0.0.4`
-* `E:\Projekt_Arcade_Shooter\Archive\v0.1.0`
+* `D:\Projekt_Arcade_Shooter\Archive\v0.0.3`
+* `D:\Projekt_Arcade_Shooter\Archive\v0.0.4`
+* `D:\Projekt_Arcade_Shooter\Archive\v0.1.0`
 
 Bestehende Archivversionen dürfen niemals stillschweigend überschrieben oder verändert werden. Falls ein Archiv beschädigt ist oder repariert werden muss, ist dafür eine ausdrückliche Einzelanweisung erforderlich.
 

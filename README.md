@@ -149,7 +149,7 @@ Every future official version release must create and validate a local archive s
 
 Archive root:
 
-* `E:\Projekt_Arcade_Shooter\Archive`
+* `D:\Projekt_Arcade_Shooter\Archive`
 
 For each release:
 
