@@ -99,13 +99,10 @@ The goal is to make balancing possible without rewriting core gameplay code.
 
 ## Project Structure
 
-Project root:
-
-`E:\Projekt_Arcade_Shooter`
 
 Unreal Engine project:
 
-`E:\Projekt_Arcade_Shooter\Arcade_Shooter`
+
 
 Important project documentation:
 
