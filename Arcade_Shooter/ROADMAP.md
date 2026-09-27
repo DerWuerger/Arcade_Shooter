@@ -27,6 +27,8 @@ Included:
 
 ### 0.0.2 - Player & Camera Foundation
 
+Status: In Progress
+
 Goals:
 
 - player and camera foundation architecture

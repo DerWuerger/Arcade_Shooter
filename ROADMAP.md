@@ -33,6 +33,8 @@ Enthalten:
 
 ### Version 0.0.2 - Player & Camera Foundation
 
+Status: In Progress
+
 Ziele:
 
 * Player-/Camera-Grundarchitektur
