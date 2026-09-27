@@ -9,7 +9,7 @@ The project is inspired by classic lightgun games and is designed from the groun
 * On-rails arcade gameplay
 * Unreal Engine 5
 * C++ core systems + Blueprints for level design and visual iteration
-* Local 1–2 player support
+* Local 1-2 player support
 * Future lightgun support
 * Mouse and controller support
 * Modular character visual styles
@@ -39,6 +39,7 @@ Major systems include:
 
 * Rail System
 * Player System
+* Camera System
 * Combat System
 * Weapon System
 * Enemy System
@@ -58,7 +59,7 @@ The project follows the principle:
 
 ## Local Co-op
 
-The architecture is designed for local 1–2 player gameplay using one shared rail camera.
+The architecture is designed for local 1-2 player gameplay using one shared rail camera.
 
 Each player can have independent:
 
@@ -99,30 +100,44 @@ The goal is to make balancing possible without rewriting core gameplay code.
 
 ## Project Structure
 
-
 Unreal Engine project:
 
-
+* `Arcade_Shooter/Arcade_Shooter.uproject`
 
 Important project documentation:
 
 * `ARCHITECTURE_CHARTER.md`
 * `ROADMAP.md`
 * `VERSION.md`
+* `Arcade_Shooter/VERSION_HISTORY.md`
 
 ## Current Status
 
-**Version:** `0.0.1`
+**Version:** `0.0.2`
 
-**Status:** Rail Foundation completed and published
+**Status:** Player & Camera Foundation completed and published
 
-**Next milestone:** `0.0.2 – Player & Camera Foundation`
+**Completed in 0.0.2:**
+
+* `AArcadeRailPlayerPawn`
+* camera component on the player pawn
+* player pawn rail movement
+* rail-relative camera look
+* mouse yaw and pitch look
+* gamepad look implementation
+* yaw and pitch clamps
+* stop at rail end
+* movement and look kept logically separate
+
+**Known note:** Gamepad input implemented; physical controller validation pending.
+
+**Next milestone:** `0.0.3 - Aiming & Crosshair`
 
 ## Version Approval
 
 A version is only considered completed or released after explicit approval by project lead:
 
-**Jens Würger**
+**Jens Wuerger**
 
 Technical completion, successful tests, Git commits, merges or prepared GitHub releases do not count as final approval.
 

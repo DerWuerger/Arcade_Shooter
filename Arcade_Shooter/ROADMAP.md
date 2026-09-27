@@ -23,21 +23,28 @@ Included:
 - stop at the spline end
 - successful PIE validation
 
-## Planned
-
 ### 0.0.2 - Player & Camera Foundation
 
-Status: In Progress
+Status: Completed and published
 
-Goals:
+Included:
 
+- `AArcadeRailPlayerPawn`
 - player and camera foundation architecture
 - camera follows rail movement
-- stable camera orientation
-- foundation for later aim and look control
-- basic mouse and gamepad look/input
-- no shooting yet
-- no enemies yet
+- stable rail base orientation without unwanted camera roll
+- free look relative to the rail base direction
+- mouse yaw and pitch
+- gamepad look implemented
+- yaw and pitch limits
+- movement and look direction kept logically separated
+- stop at the spline end
+
+Note:
+
+- Gamepad input implemented; physical controller validation pending.
+
+## Planned
 
 ### 0.0.3 - Aiming & Crosshair
 

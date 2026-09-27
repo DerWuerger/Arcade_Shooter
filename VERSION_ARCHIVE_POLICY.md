@@ -272,6 +272,8 @@ Das Archiv ist nicht dafür vorgesehen, sämtliche Assets mehrfach lokal vorzuha
 
 ## 13. Aktueller Stand
 
-Durch die Einführung dieser Policy wird kein Versionsarchiv erstellt. Insbesondere wird noch kein Ordner `Version_Archive/v0.0.1/` angelegt.
+Durch diese Dokumentationsaktualisierung wird kein Versionsarchiv erstellt. Insbesondere wird noch kein neuer Ordner unter `Version_Archive/` angelegt.
 
-Version `0.0.1` bleibt `In Development` und ist nicht freigegeben. Diese Policy selbst gilt erst nach ausdrücklicher Freigabe durch Jens Würger als verbindlich eingeführt.
+Aktueller veröffentlichter Projektstand: `0.0.2 - Player & Camera Foundation`.
+
+Diese Policy selbst gilt erst nach ausdrücklicher Freigabe durch Jens Würger als verbindlich eingeführt.

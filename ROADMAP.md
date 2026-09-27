@@ -29,23 +29,30 @@ Enthalten:
 
 ---
 
-## Planned
-
 ### Version 0.0.2 - Player & Camera Foundation
 
-Status: In Progress
+Status: Completed and published
 
-Ziele:
+Enthalten:
 
+* `AArcadeRailPlayerPawn`
 * Player-/Camera-Grundarchitektur
 * Kamera folgt der Rail-Bewegung
-* Kamera besitzt eine stabile Ausrichtung
-* Grundlage fuer spaetere Ziel-/Look-Steuerung
-* grundlegender Maus- und Gamepad-Look/Input
-* noch kein Schiessen
-* noch keine Gegner
+* stabile Rail-Grundrotation ohne unerwuenschten Camera Roll
+* freie Blicksteuerung relativ zur Rail-Grundrichtung
+* Mouse Yaw und Mouse Pitch
+* Gamepad-Look implementiert
+* Yaw- und Pitch-Limits
+* Trennung von Look-Richtung und Rail-Bewegung
+* Stop am Spline-Ende
+
+Hinweis:
+
+* Gamepad input implemented; physical controller validation pending.
 
 ---
+
+## Planned
 
 ### Version 0.0.3 - Aiming & Crosshair
 
