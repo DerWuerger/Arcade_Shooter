@@ -1,8 +1,8 @@
 # Current Version
 
-Version: 0.0.0
+Version: 0.0.1
 
-Status: Project Architecture / Pre-Prototype
+Status: In Development
 
 Approval Status:
 Not yet released
@@ -15,11 +15,11 @@ Project Approval Authority:
 Jens Würger
 
 Current Focus:
-- Architecture Charter
-- Roadmap
-- Version system
-- Unreal project preparation
-- GitHub preparation
+- 0.0.1 Core Rail Prototype
+- Minimal Rail System
+- Combat Stop
+- Mouse Aim / Fire
+- Dummy Target Hit Test
 
 Primary Character Visual Style:
 Comic Stickman
@@ -36,7 +36,7 @@ C++ + Blueprints
 Player Architecture:
 Local 1–2 Players
 
-Next Milestone:
+Current Milestone:
 0.0.1 – Core Rail Prototype
 
 ---
