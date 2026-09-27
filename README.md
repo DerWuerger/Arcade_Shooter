@@ -112,11 +112,11 @@ Important project documentation:
 
 ## Current Status
 
-**Version:** `0.0.0`
+**Version:** `0.0.1`
 
-**Status:** Project Architecture / Pre-Prototype
+**Status:** Rail Foundation completed and published
 
-**Next milestone:** `0.0.1 – Core Rail Prototype`
+**Next milestone:** `0.0.2 – Player & Camera Foundation`
 
 ## Version Approval
 

@@ -1,280 +1,176 @@
 # ROADMAP.md
 
-Diese Roadmap beschreibt die geplanten technischen Meilensteine fuer das Projekt On-Rails Arcade Shooter.
+Diese Roadmap beschreibt die geplanten technischen Meilensteine fuer das Projekt `Arcade_Shooter` bis einschliesslich `v0.1.0`.
 
-Sie ist mit ARCHITECTURE_CHARTER.md abzugleichen. Keine Roadmap-Entscheidung darf die Architecture Charter umgehen. Versionen gelten erst nach ausdruecklicher Freigabe durch Jens Würger als abgeschlossen.
+Sie ist mit `ARCHITECTURE_CHARTER.md` abzugleichen. Keine Roadmap-Entscheidung darf die Architecture Charter umgehen. Versionen gelten erst nach ausdruecklicher Freigabe durch Jens Wuerger als abgeschlossen.
 
----
+Die Roadmap ist nicht starr. Falls waehrend der Entwicklung ein System groesser oder komplexer wird, duerfen Zwischenversionen oder zusaetzliche Entwicklungsschritte ergaenzt werden.
 
-## Version 0.0.1 – Core Rail Prototype
+Innerhalb einer Version koennen intern Teilabschnitte verwendet werden, zum Beispiel `0.0.2-A`, `0.0.2-B` oder `0.0.2-C`. Diese muessen nicht als eigene Git-Releases veroeffentlicht werden.
 
-Ziel:
-
-Minimal funktionierender technischer On-Rails-Prototyp.
-
-Geplanter Umfang:
-
-* Unreal-Projektbasis
-* grundlegende Projektstruktur
-* Rail System
-* Spline Path
-* automatische Kamerafahrt
-* Combat Stop
-* Weiterfahrt nach abgeschlossenem Combat Stop
-* Mouse Aim
-* Fire Input
-* einfacher Hit Test
-* einfache Platzhaltergegner
-* Debug-Ausgaben
-* Core-Strukturen bereits so planen, dass Player Ownership nicht hart auf einen Spieler beschränkt wird
-
-Nicht enthalten:
-
-* finales Character Design
-* Gore
-* fertiges Difficulty-Menü
-* Lightgun-Support
-* finales HUD
-* Boss
-* komplettes Pickup-System
-* finaler Two-Player Gameplay Mode
-
-Status nach technischer Fertigstellung:
-
-`Awaiting Approval by Jens Würger`
-
-Version 0.0.1 gilt erst nach ausdrücklicher Freigabe als abgeschlossen.
+Ein offizieller Git-Tag wird erst erstellt, wenn die jeweilige Hauptversion vollstaendig validiert wurde.
 
 ---
 
-## Version 0.0.2 – Combat Foundation
+## Completed
 
-* Weapon Base
-* Fire
-* Magazine
-* Reserve Ammo
-* Reload
-* Hit Detection
-* Hit Zones
+### Version 0.0.1 - Rail Foundation
+
+Status: Completed and published
+
+Enthalten:
+
+* `AArcadeRailPath`
+* editierbare Spline
+* `AArcadeRailMover`
+* Bewegung entlang der Rail
+* Stop am Spline-Ende
+* erfolgreicher PIE-Test
+
+---
+
+## Planned
+
+### Version 0.0.2 - Player & Camera Foundation
+
+Ziele:
+
+* Player-/Camera-Grundarchitektur
+* Kamera folgt der Rail-Bewegung
+* Kamera besitzt eine stabile Ausrichtung
+* Grundlage fuer spaetere Ziel-/Look-Steuerung
+* grundlegender Maus- und Gamepad-Look/Input
+* noch kein Schiessen
+* noch keine Gegner
+
+---
+
+### Version 0.0.3 - Aiming & Crosshair
+
+Ziele:
+
+* sichtbares Fadenkreuz
+* Zielbewegung per Maus und Controller
+* definierte Ziel-/Look-Grenzen
+* saubere Screen-/World-Aiming-Grundlage
+* Vorbereitung fuer Trefferberechnung
+
+---
+
+### Version 0.0.4 - Weapon & Hit System
+
+Ziele:
+
+* erste Waffenlogik
+* Schiessen
+* Hitscan/Line Trace
+* Treffererkennung
+* Feuerrate
+* grundlegende Reload-Struktur
+* noch keine komplexe Gegner-KI
+
+---
+
+### Version 0.0.5 - Enemy Foundation
+
+Ziele:
+
+* erster grundlegender Gegnertyp
 * Health
-* Enemy Defeat State
-* Score-Basis
-* mehrere Gegner pro Combat Stop
+* Damage
+* Death
+* einfache Zustands-/Animationsstruktur
+* Spawnfaehigkeit
 
 ---
 
-## Version 0.0.3 – Enemy Architecture
+### Version 0.0.6 - Combat Encounters
 
-* Enemy Base
-* Enemy Archetypes
-* Enemy Behaviour
-* Spawn Points
-* Enemy Waves
-* Reaction Time
-* Attack Timing
-* datengetriebene Basiswerte
+Ziele:
 
----
-
-## Version 0.0.4 – Modular Character Visuals
-
-* Shared Skeleton
-* Shared Animations
-* Character Visual Abstraction
-* Comic Stickman als erster Style
-* Visual Style ohne Gameplay-Änderung austauschbar
-* Vorbereitung für 90s Arcade Anime
+* definierte Combat Stops entlang der Rail
+* Rail-Bewegung kann fuer Kaempfe anhalten
+* Gegner koennen Encounter-gebunden erscheinen
+* Weiterfahrt nach erfuellter Encounter-Bedingung
+* Trigger-/Encounter-Grundsystem
 
 ---
 
-## Version 0.0.5 – Modular HUD Theme System
+### Version 0.0.7 - Arcade Game Loop
 
-* HUD Theme Abstraction
-* Fonts
-* Score Theme
-* Ammo Theme
-* Reload Theme
-* Health/Energy Theme
-* Crosshair Theme
-* UI Animation Theme
-* UI Sound Theme
-* Vorbereitung für unterschiedliche 1P-/2P-HUD-Layouts
+Ziele:
 
----
-
-## Version 0.0.6 – Presentation Modes
-
-* Family Mode
-* Arcade Mode
-* Gore Mode
-* einheitliche Damage Events
-* Presentation ausschließlich als Darstellungsebene
-
----
-
-## Version 0.0.7 – Difficulty System
-
-* Easy
-* Normal
-* Hard
-* optional Arcade
-* Enemy Count
-* Reaction Time
-* Accuracy
-* Health Modifier
-* Spawn Pressure
-* Special Enemy Frequency
-* Boss Scaling Vorbereitung
-* Difficulty Data Assets
-
----
-
-## Version 0.0.8 – Item / Pickup Foundation
-
-* Item Base
-* Ammo Pickup
-* Health / Energy Pickup
-* Score Pickup
-* playerbezogene Pickup-Zuordnung
-* Item Data Assets
-* Style-unabhängige Item-Funktion
-* Vorbereitung auf Weapon Pickups und Power-Ups
-
----
-
-## Version 0.0.9 – Local Two Player Foundation
-
-* Player 2 aktivierbar
-* getrennte Aim Positions
-* zwei Crosshairs
-* getrennte Scores
-* getrennte Weapon-/Ammo-States
-* Input Device Assignment
-* gemeinsame Rail-Kamera
-* 2P HUD Layout
-* Player Ownership bei Hits und Items
-
----
-
-## Version 0.0.10 – Boss Foundation
-
-* Boss Base
-* Boss Configuration
-* Boss Health
-* Weak Points
-* mehrere Phasen
-* datengetriebene Phase Transitions
-* Boss HUD Data
-* Difficulty Scaling
-* Style-unabhängige Boss Visuals
-
-Ein echter Boss muss noch nicht zwingend Bestandteil des ersten finalen Levels sein.
-
----
-
-## Version 0.0.11 – Arcade Game Loop
-
-* Start
-* Level Begin
-* Rail Sections
-* Combat Stops
+* Player Health/Lives
 * Score
-* Accuracy
-* Combo-Basis
-* Lives / Continues
-* Level Complete
-* Result Screen
+* Trefferquote
+* Game Over
+* Restart
+* grundlegende HUD-Anzeigen
 
 ---
 
-## Version 0.0.12 – Level 1
+### Version 0.0.8 - Endless / Horde Mode
 
-Vorläufiges Szenario:
+Ziele:
 
-`Industrial / Warehouse / Docks`
-
-Geplant:
-
-* vollständiger Rail Path
-* mehrere Combat Stops
-* Enemy Waves
-* unterschiedliche Spawn-Situationen
-* Pickups
-* mindestens ein Special Enemy
-* Civilians / Non-Targets
-* Level Ending
+* kleine spielbare Karte
+* fortlaufender Arcade-Gameplay-Loop
+* wiederkehrende bzw. aufeinanderfolgende Encounter
+* steigende Gegnerwellen oder Schwierigkeitssteigerung
+* Fokus auf Endless/Horde statt Story-Modus
 
 ---
 
-## Version 0.0.13 – Input Expansion
+### Version 0.0.9 - Presentation & Polish
 
-* Mouse
-* Controller
-* abstraktes Aim Interface
-* Fire Interface
-* Reload Interface
-* saubere Player/Input-Zuordnung
-* Lightgun-Vorbereitung
+Ziele:
+
+* Trefferfeedback
+* einfache VFX
+* Muzzle Flash
+* Sounds
+* Kameraeffekte
+* UI-Polish
+* Balancing
+* Bugfixes
 
 ---
 
-## Version 0.1.0 – First Playable Arcade Release Candidate
+### Version 0.1.0 - First Playable
 
 Ziel:
 
-Erster vollständiger intern spielbarer Release Candidate.
+Ein vollstaendiger erster spielbarer Arcade-Shooter-Loop.
 
-Geplant:
+Der Spieler soll:
 
-* vollständiges Level
-* Comic Stickman Style
-* mehrere Enemy Archetypes
-* Difficulty Selection
-* Family / Arcade / Gore
-* Score
-* Accuracy
-* Reload
-* Lives / Continues
-* Item System
-* 1–2 Player Support
-* Mouse / Controller
-* modulares HUD
-* modulare Grundlage für 90s Arcade Anime
-* Boss-System technisch vorbereitet
+* auf der Rail bewegt werden
+* zielen koennen
+* schiessen koennen
+* Gegner bekaempfen
+* Combat Stops absolvieren
+* Score/Leben besitzen
+* nach einem Game Over neu starten koennen
+* einen funktionierenden Endless-/Horde-Loop erleben koennen
 
-Wichtig:
-
-`0.1.0` gilt nicht automatisch als Release.
-
-Nach technischer Fertigstellung:
-
-`0.1.0 Release Candidate – Awaiting Approval by Jens Würger`
-
-Erst nach ausdrücklicher Freigabe darf der Status auf Released / Completed gesetzt werden.
+`0.1.0` ist noch kein fertiges Spiel und benoetigt ausdruecklich noch keinen Story-Modus.
 
 ---
 
-## Future / Post-0.1
+## Future / Post-0.1.0
 
 Noch keiner festen Version zuordnen:
 
-* 90s Arcade Anime Visual Style
-* weitere Visual Styles
-* weitere HUD Themes
-* echte Lightgun-Unterstützung
-* Wiimote / DolphinBar
-* mehrere Waffen
-* mehr Power-Ups
-* mehr Items
-* mehrere Level
-* zusätzliche Bosses
+* Story-Modus
+* weitere Level
+* erweiterte Gegner-KI
+* Boss Encounters
+* Local Two Player
+* weitere Waffen
+* Pickups und Power-Ups
 * Character Style Selection
 * HUD Theme Selection
-* Audio Theme Selection
-* erweiterte Zwei-Spieler-Regeln
+* echte Lightgun-Unterstuetzung
+* Wiimote / DolphinBar
 * Highscores
 * lokale Bestenlisten
-* Arcade Cabinet UI
-* weitere Difficulty Modes
-
----
