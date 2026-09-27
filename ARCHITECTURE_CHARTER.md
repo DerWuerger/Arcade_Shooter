@@ -1635,6 +1635,12 @@ Codex muss bei allen zukünftigen Implementierungen prüfen:
 * Kann Progression später persistent gespeichert werden?
 * Werden vorhandene Interfaces und Basissysteme wiederverwendet?
 * Entsteht unnötige technische Schuld?
+* Wurde bei einem Versionsabschluss das vorgeschriebene Versionsarchiv erstellt?
+* Ist `RELEASE_INFO.md` vollständig und entspricht dem tatsächlichen Projektstand?
+* Ist der freigegebene Git Commit korrekt im Archiv dokumentiert?
+* Wurden unnötige Kopien großer Assets vermieden?
+* Ist der archivierte Versionsstand unverändert?
+* Liegt die ausdrückliche Freigabe durch Jens Würger vor?
 
 Wenn ein zukünftiger Auftrag im Widerspruch zur Charter steht, soll Codex den Konflikt ausdrücklich nennen und nach Möglichkeit eine charter-konforme Lösung verwenden.
 
@@ -1688,6 +1694,13 @@ Wenn ein zukünftiger Auftrag im Widerspruch zur Charter steht, soll Codex den K
 * Wiimote / DolphinBar optional
 * Data Assets / Data Tables für Balancing
 * strikte Trennung von Gameplay und Darstellung
+* schlankes lokales Versionsarchiv für jede freigegebene Version
+* Archivpfad `Version_Archive`
+* `RELEASE_INFO.md` und Änderungsprotokoll pro Archivversion
+* Archivierung von Projektdokumentation, `.uproject`, Config und Source
+* keine unnötige Duplizierung großer Content-Assets pro Version
+* vollständige Assets bleiben über den dokumentierten Git-Stand reproduzierbar
+* Git Commit Hash ist für jede Archivversion verpflichtend
 
 ---
 
@@ -1856,3 +1869,28 @@ Eine Version gilt ausschließlich nach ausdrücklicher Freigabe durch die Projek
 Die Ergänzung des `Progression & Economy System` wurde durch die Projektleitung Jens Würger ausdrücklich freigegeben.
 
 Diese Freigabe bestätigt die Architekturänderung, stellt jedoch keine Versionsfreigabe, keinen Release und keinen Start von `0.0.1 – Core Rail Prototype` dar.
+
+---
+
+# 58. Version Archive Policy
+
+Jede ausdrücklich durch Jens Würger freigegebene Version erhält ein schlankes lokales Versionsarchiv unter `Version_Archive/vX.X.X/`.
+
+Ein offizieller Archivordner darf erst nach der ausdrücklichen Versionsfreigabe erstellt werden. Technische Fertigstellung, Tests, Release-Candidate-Status, Commits, Pushes oder Merges ersetzen diese Freigabe nicht.
+
+Das Archiv enthält mindestens:
+
+* Projektdokumentation
+* `Arcade_Shooter.uproject`
+* `Arcade_Shooter/Config/`
+* `Arcade_Shooter/Source/`
+* relevante Grunddateien eigener Plugins, sofern vorhanden
+* eine verpflichtende `RELEASE_INFO.md`
+
+`RELEASE_INFO.md` dokumentiert mindestens die Version, Freigabe, Freigabedatum, Unreal-Engine-Version und den exakten Git Commit Hash. Große Content-Assets und Unreal-Generatorverzeichnisse werden nicht unnötig pro Version dupliziert; ihr vollständiger Stand bleibt über Git und den dokumentierten Commit reproduzierbar.
+
+Ein einmal erstellter Archivstand ist ein unveränderlicher historischer Snapshot. Nachträgliche Änderungen erfordern eine neue Version und dürfen nicht stillschweigend in einen bestehenden Archivordner geschrieben werden.
+
+Git/GitHub bleibt die vollständige technische Historie. Das lokale Versionsarchiv ergänzt diese Historie um eine schnell zugängliche Sammlung zentraler Grunddateien freigegebener Versionen und ersetzt Git nicht.
+
+Die verbindlichen Details, Ausschlüsse, Prüfregeln, Wiederherstellungsschritte und die Struktur von `RELEASE_INFO.md` stehen in `VERSION_ARCHIVE_POLICY.md`. Diese Policy wird erst nach ausdrücklicher Freigabe durch Jens Würger verbindlich wirksam.

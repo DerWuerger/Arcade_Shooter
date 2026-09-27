@@ -45,6 +45,9 @@ Build/*/FileOpenOrder/
 *.tlog
 AutomationTool/
 
+# Local snapshots of approved versions
+Version_Archive/
+
 # OS metadata
 .DS_Store
 Thumbs.db
