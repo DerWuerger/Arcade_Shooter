@@ -1,191 +1,189 @@
 # Version Archive Policy
 
-Diese Policy definiert das schlanke lokale Versionsarchiv des Projekts `Arcade_Shooter`.
+Diese Policy definiert das lokale Versionsarchiv des Projekts `Arcade_Shooter`.
 
-Sie ergänzt `ARCHITECTURE_CHARTER.md`, `ROADMAP.md`, `VERSION.md` und die vollständige Git-/GitHub-Historie. Bei Konflikten hat `ARCHITECTURE_CHARTER.md` Vorrang.
+Sie ergänzt `ARCHITECTURE_CHARTER.md`, `ROADMAP.md`, `VERSION.md`, `README.md`, `AGENTS.md` und die vollständige Git-/GitHub-Historie. Bei Konflikten hat `ARCHITECTURE_CHARTER.md` Vorrang.
 
-Policy Status: `Pending Approval by Jens Würger`
+Policy Status: `Active`
 
 ---
 
 ## 1. Zweck
 
-Das Versionsarchiv hält die zentralen Grunddateien jeder ausdrücklich freigegebenen Version lokal und schnell zugänglich. Es unterstützt die Nachvollziehbarkeit, den Vergleich und die Wiederherstellung früherer freigegebener Projektstände, ohne große Unreal-Assets mehrfach zu kopieren.
+Das Versionsarchiv hält für jede offiziell veröffentlichte Version eine unveränderliche lokale Snapshot-Kopie bereit. Es unterstützt die Nachvollziehbarkeit, den Vergleich und die Wiederherstellung früherer freigegebener Projektstände.
 
-Das Versionsarchiv ersetzt Git oder GitHub nicht. Git/GitHub bleibt die vollständige technische Historie für Code, Content, Assets, Commits, Zusammenarbeit und die Wiederherstellung vollständiger Projektstände.
-
----
-
-## 2. Freigabe als zwingende Voraussetzung
-
-Ein offizielles Versionsarchiv wird ausschließlich erstellt, nachdem die betreffende Version ausdrücklich durch den Projektleiter freigegeben wurde:
-
-**Jens Würger**
-
-Nicht ausreichend sind:
-
-* erfolgreicher Build
-* erfolgreicher Runtime-Test
-* Release-Candidate-Status
-* Commit oder Push
-* Merge
-* technische Fertigstellung
-* Bewertung oder Empfehlung durch Codex
-
-Vor der ausdrücklichen Freigabe darf kein Ordner `Version_Archive/vX.X.X/` für die betreffende Version erzeugt werden.
+Das Archiv ersetzt Git oder GitHub nicht. Git/GitHub bleibt die vollständige technische Historie für Code, Content, Assets, Commits, Zusammenarbeit und die Wiederherstellung vollständiger Projektstände.
 
 ---
 
-## 3. Archivpfad und Benennung
+## 2. Verbindliche Archivierungsregel
 
-Das lokale Archiv liegt unter:
+Bei jedem zukünftigen offiziellen Versionsabschluss muss automatisch eine lokale Archivkopie der veröffentlichten Version erstellt und validiert werden.
 
-`E:\Projekt_Arcade_Shooter\Version_Archive`
+Ein offizieller Versionsabschluss ist ohne erfolgreich erstellte und validierte lokale Archivkopie nicht vollständig.
 
-Jede freigegebene Version erhält genau einen eigenen Ordner im Format:
+Diese Regel gilt für alle zukünftigen offiziellen Versionen, zum Beispiel:
+
+* `v0.0.3`
+* `v0.0.4`
+* `v0.0.5`
+* `v0.1.0`
+
+---
+
+## 3. Vollständiger Versionsabschluss
+
+Ein Versionsabschluss gilt erst dann als vollständig, wenn alle folgenden Schritte abgeschlossen sind:
+
+1. Implementierung abgeschlossen.
+2. Validierung erfolgreich.
+3. Versionsdokumentation aktualisiert.
+4. Release-Commit erstellt.
+5. `main` erfolgreich nach `origin/main` gepusht.
+6. Versions-Tag `v<VERSION>` erstellt.
+7. Versions-Tag erfolgreich zu `origin` gepusht.
+8. Archivkopie exakt aus diesem veröffentlichten Tag erstellt.
+9. Archivkopie validiert.
+10. Arbeitsbaum anschließend sauber.
+
+Codex muss diese Archivierung bei jedem zukünftigen offiziellen Versionsabschluss automatisch durchführen, ohne dass dafür eine erneute Einzelanweisung erforderlich ist.
+
+---
+
+## 4. Archivpfad und Benennung
+
+Die lokale Archivwurzel liegt unter:
+
+`E:\Projekt_Arcade_Shooter\Archive`
+
+Jede offizielle Version erhält genau einen eigenen Ordner im Format:
 
 ```text
-Version_Archive/
+Archive/
 ├── v0.0.1/
 ├── v0.0.2/
 ├── v0.0.3/
 └── v0.1.0/
 ```
 
-Der Pfad `Version_Archive/` ist über `.gitignore` von der regulären Git-Historie ausgeschlossen. Der Ordner wird erst angelegt, wenn erstmals eine freigegebene Version archiviert werden muss.
+Beispiele:
+
+* `E:\Projekt_Arcade_Shooter\Archive\v0.0.3`
+* `E:\Projekt_Arcade_Shooter\Archive\v0.0.4`
+* `E:\Projekt_Arcade_Shooter\Archive\v0.1.0`
+
+Bestehende Archivversionen dürfen niemals stillschweigend überschrieben oder verändert werden. Falls ein Archiv beschädigt ist oder repariert werden muss, ist dafür eine ausdrückliche Einzelanweisung erforderlich.
 
 ---
 
-## 4. Verpflichtender Archivinhalt
+## 5. Quelle der Archivkopie
 
-Jede Archivversion enthält mindestens:
+Die Archivkopie darf nicht aus dem aktuellen Arbeitsverzeichnis kopiert werden.
+
+Quelle ist ausschließlich der gerade veröffentlichte Git-Tag:
+
+`v<VERSION>`
+
+Die archivierten Dateien müssen exakt dem Git-Stand dieses Tags entsprechen. Der Snapshot soll direkt aus Git erzeugt werden, beispielsweise über `git archive`, damit keine Dateien eines späteren oder bereits weiterentwickelten `main` versehentlich in das Archiv gelangen.
+
+---
+
+## 6. Archivinhalt
+
+Übernommen werden alle Dateien, die im jeweiligen Release-Tag versioniert sind.
+
+Dazu gehören je nach Version insbesondere:
+
+* Unreal-Projektdateien
+* `.uproject`
+* `Source`
+* `Config`
+* versionierter `Content`
+* `README.md`
+* `ROADMAP.md`
+* `VERSION.md`
+* `VERSION`
+* `VERSION_HISTORY.md`
+* Architektur-/Design-Dokumentation
+* sonstige versionierte Projektdateien
+
+Nicht übernommen werden:
+
+* `.git`
+* `.vs`
+* `Binaries`
+* `DerivedDataCache`
+* `Intermediate`
+* `Saved`
+* temporäre Build-Dateien
+* lokale IDE-Dateien
+* Cache-Dateien
+* sonstige nicht versionierte Entwicklungsartefakte
+
+---
+
+## 7. ARCHIVE_INFO.md
+
+In jedem Versionsarchiv wird zusätzlich eine lokale Datei erstellt:
+
+`ARCHIVE_INFO.md`
+
+Diese Datei muss mindestens enthalten:
+
+* Version
+* Versionsname
+* Git-Tag
+* vollständigen Release-Commit-Hash
+* Status: `Completed`
+* Archivierungsdatum
+* Hinweis, dass dies eine unveränderliche lokale Archivkopie des veröffentlichten Releases ist
+
+Beispiel:
 
 ```text
-Version_Archive/vX.X.X/
-├── ARCHITECTURE_CHARTER.md
-├── ROADMAP.md
-├── VERSION.md
-├── README.md
-├── VERSION_ARCHIVE_POLICY.md
-├── RELEASE_INFO.md
-│
-└── Arcade_Shooter/
-    ├── Arcade_Shooter.uproject
-    ├── Config/
-    └── Source/
+Version: `0.0.3`
+Name: `<Versionsname>`
+Git-Tag: `v0.0.3`
+Release-Commit: `<vollständiger SHA>`
+Status: `Completed`
+Archive Date: `<YYYY-MM-DD>`
+
+Hinweis: Immutable local archive snapshot of the published release.
 ```
 
-Wenn eigene Plugins verwendet werden, werden zusätzlich deren relevante Grunddateien archiviert:
-
-```text
-Plugins/
-└── CustomPlugin/
-    ├── CustomPlugin.uplugin
-    ├── Source/
-    └── Config/
-```
-
-Große Plugin-Content-Assets werden nicht automatisch dupliziert.
+`ARCHIVE_INFO.md` gehört ausschließlich zum lokalen Archiv. Sie darf keinen bereits veröffentlichten Release-Tag und keinen Release-Commit verändern.
 
 ---
 
-## 5. Grundsätzlich ausgeschlossene Inhalte
+## 8. Validierung jedes Archivs
 
-Folgende Verzeichnisse werden nicht in jede Archivversion kopiert:
+Nach jeder Archivierung muss automatisch geprüft werden:
 
-```text
-Arcade_Shooter/Content/
-Arcade_Shooter/Binaries/
-Arcade_Shooter/DerivedDataCache/
-Arcade_Shooter/Intermediate/
-Arcade_Shooter/Saved/
-```
+1. Archivordner existiert.
+2. Verwendeter Tag zeigt auf den erwarteten Release-Commit.
+3. Snapshot entspricht den versionierten Dateien des Tags.
+4. `VERSION` entspricht der archivierten Version.
+5. Zentrale Source-Dateien der Version sind vorhanden.
+6. Keine Dateien späterer Commits sind enthalten.
+7. Keine generierten Unreal-Buildordner sind enthalten.
+8. Bestehende ältere Archive wurden nicht verändert.
+9. Aktueller Git-Arbeitsbaum bleibt sauber.
 
-Ebenfalls ausgeschlossen sind grundsätzlich:
-
-* IDE-Caches
-* temporäre Dateien
-* Build-Caches
-* automatisch erzeugte Dateien
-* große Grafiken
-* Audio-Dateien
-* Animationen
-* Texturen
-* Meshes
-* andere große Content-Assets
-
-Diese Inhalte werden nicht dupliziert, sofern ihr vollständiger Versionsstand über den dokumentierten Git Commit eindeutig reproduzierbar ist.
+Die strengste bevorzugte Prüfung ist ein Vergleich der archivierten Dateiliste und Blob-Inhalte gegen den Git-Tag. Wenn Windows-Zeilenenden eine bytegenaue Prüfung verfälschen würden, muss der Snapshot mit deaktivierter CRLF-Konvertierung erzeugt werden, zum Beispiel über `git -c core.autocrlf=false archive`.
 
 ---
 
-## 6. Verpflichtende RELEASE_INFO.md
+## 9. Git-Verhalten des Archive-Ordners
 
-Jede Archivversion enthält eine `RELEASE_INFO.md` mit mindestens folgenden Metadaten:
+`Archive/` bleibt lokal.
 
-```text
-Version:
-Approval Status:
-Approved By:
-Approval Date:
+Archivkopien werden nicht committed, nicht gepusht und nicht in Versions-Tags aufgenommen.
 
-Git Commit:
-Git Tag: optional, falls vorhanden
-
-Unreal Engine Version:
-Previous Approved Version:
-```
-
-Der Eintrag `Git Commit` ist verpflichtend und muss auf den finalen freigegebenen Projektstand zeigen. Ein Git Tag ist optional.
-
-Zusätzlich enthält `RELEASE_INFO.md` einen verständlichen Änderungsbericht mit den jeweils zutreffenden Bereichen:
-
-### Added
-
-Neue Systeme, Gameplay-Funktionen, Klassen, Features und Einstellungen.
-
-### Changed
-
-Änderungen an bestehendem Verhalten, Architektur, Datenstrukturen, Steuerung oder Konfiguration.
-
-### Improved
-
-Verbesserungen an Performance, Stabilität, Bedienbarkeit, Code-Struktur, Modularität oder Balancing.
-
-### Fixed
-
-Behobene Fehler.
-
-### Removed
-
-Tatsächlich entfernte oder ersetzte Bestandteile. Dieser Bereich wird nur verwendet, wenn etwas entfernt wurde.
-
-### Known Issues
-
-Bekannte Fehler und Einschränkungen der freigegebenen Version.
-
-### Technical Notes
-
-Wichtige Migrationen, Abhängigkeiten, Toolchain-Eigenheiten und relevante Architekturentscheidungen.
+`Archive/` soll lokal über `.git/info/exclude` ignoriert werden. Die öffentliche `.gitignore` wird nur geändert, wenn dies ausdrücklich zur bestehenden Projektstrategie passt. Standard ist weiterhin die lokale Ignorierung über `.git/info/exclude`.
 
 ---
 
-## 7. Tatsächlicher Projektstand als Quelle
-
-Codex darf keine Änderungen oder Testergebnisse erfinden. `RELEASE_INFO.md` wird aus dem tatsächlichen Git-Diff, den Testergebnissen und der Projektdokumentation der freigegebenen Version erstellt.
-
-Nach Möglichkeit wird der Unterschied zur vorherigen freigegebenen Version geprüft, beispielsweise `v0.0.1` zu `v0.0.2`. Der dokumentierte Git Commit muss den vollständigen Content- und Asset-Stand reproduzierbar machen.
-
----
-
-## 8. Unveränderlichkeit
-
-Ein erstellter und geprüfter Archivordner ist ein unveränderlicher historischer Snapshot.
-
-Ein bestehender Ordner wie `Version_Archive/v0.0.1/` darf später nicht stillschweigend geändert, ergänzt oder überschrieben werden. Nachträgliche Projektänderungen erfordern eine neue Version, beispielsweise `v0.0.2`.
-
----
-
-## 9. Verhältnis zwischen Git und Versionsarchiv
+## 10. Verhältnis zwischen Git und Versionsarchiv
 
 Git/GitHub dient für:
 
@@ -193,87 +191,34 @@ Git/GitHub dient für:
 * Commits und Zusammenarbeit
 * Wiederherstellung vollständiger Projektstände
 
-Das Versionsarchiv dient für:
+Das lokale Archiv dient für:
 
-* schnelle lokale Übersicht freigegebener Versionen
-* Projektdokumentation
-* Source und Config
-* Projektdefinition
-* Release-Informationen
+* schnelle lokale Übersicht veröffentlichter Versionen
+* lokale Projekt- und Release-Dokumentation
 * schnellen Vergleich zentraler Grunddateien
+* reproduzierbare lokale Snapshots veröffentlichter Tags
 
 Beide Systeme ergänzen sich. Keines ersetzt das andere.
 
 ---
 
-## 10. Verbindliche Reihenfolge beim Versionsabschluss
-
-```text
-Entwicklung
-↓
-Build und Tests
-↓
-Release Candidate
-↓
-Review durch Jens Würger
-↓
-ausdrückliche Freigabe
-↓
-finalen freigegebenen Commit feststellen
-↓
-VERSION.md aktualisieren
-↓
-Versionsarchiv erstellen
-↓
-RELEASE_INFO.md erstellen
-↓
-Archiv prüfen
-↓
-Versionsabschluss dokumentieren
-```
-
-Git Tags können später ergänzt werden, sind für die Archivregel aber nicht verpflichtend.
-
-Wenn eine freigegebene Version gemäß dieser Policy archiviert werden muss, ist der technische Versionsabschlussprozess erst vollständig dokumentiert, nachdem das Archiv korrekt erstellt und geprüft wurde. Die Freigabehoheit bleibt davon unberührt ausschließlich bei Jens Würger.
-
----
-
-## 11. Abschlussprüfung des Archivs
-
-Bei jedem zukünftigen Versionsabschluss ist zu prüfen:
-
-1. Liegt die ausdrückliche Freigabe durch Jens Würger vor?
-2. Wurde der richtige Versionsordner erstellt?
-3. Sind alle erforderlichen Grunddateien enthalten?
-4. Ist `RELEASE_INFO.md` vollständig?
-5. Entspricht der Änderungsbericht dem tatsächlichen Projektstand?
-6. Ist der korrekte Git Commit Hash dokumentiert?
-7. Sind bekannte Fehler und Einschränkungen dokumentiert?
-8. Wurden keine Unreal-Generatorverzeichnisse kopiert?
-9. Wurden keine unnötigen großen Content-Assets dupliziert?
-10. Ist ein bereits bestehender Archivstand unverändert geblieben?
-
-Codex darf eine Freigabe niemals selbst erteilen.
-
----
-
-## 12. Wiederherstellung einer alten Version
+## 11. Wiederherstellung einer alten Version
 
 Zur Untersuchung oder Wiederherstellung einer alten Version:
 
-1. `RELEASE_INFO.md` lesen.
-2. Den dokumentierten Git Commit identifizieren.
+1. `ARCHIVE_INFO.md` lesen.
+2. Den dokumentierten Git-Tag und Release-Commit identifizieren.
 3. Die zentralen Grunddateien aus dem Archiv verwenden.
-4. Falls alter Content oder andere Assets benötigt werden, den dokumentierten Git Commit beziehungsweise den zugehörigen Git-Stand verwenden.
-
-Das Archiv ist nicht dafür vorgesehen, sämtliche Assets mehrfach lokal vorzuhalten.
+4. Falls weiterer Content oder andere Assets benötigt werden, den dokumentierten Git-Tag beziehungsweise den zugehörigen Git-Stand verwenden.
 
 ---
 
-## 13. Aktueller Stand
-
-Durch diese Dokumentationsaktualisierung wird kein Versionsarchiv erstellt. Insbesondere wird noch kein neuer Ordner unter `Version_Archive/` angelegt.
+## 12. Aktueller Stand
 
 Aktueller veröffentlichter Projektstand: `0.0.2 - Player & Camera Foundation`.
 
-Diese Policy selbst gilt erst nach ausdrücklicher Freigabe durch Jens Würger als verbindlich eingeführt.
+Bestehende Archive unter `Archive/` bleiben unverändert. Diese Policy führt keine neue Projektversion ein, erhöht keine Versionsnummer und erstellt keinen neuen Versions-Tag.
+
+Für zukünftige offizielle Versionsabschlüsse gilt dauerhaft:
+
+`Future official version releases will automatically create and validate a local Archive\v<VERSION> snapshot from the published Git tag.`

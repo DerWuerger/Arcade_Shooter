@@ -143,6 +143,24 @@ Technical completion, successful tests, Git commits, merges or prepared GitHub r
 
 Until approval, milestones remain in development, review or release-candidate status.
 
+## Release Archive Workflow
+
+Every future official version release must create and validate a local archive snapshot after the release commit, `main` push, version tag creation, and tag push are complete.
+
+Archive root:
+
+* `E:\Projekt_Arcade_Shooter\Archive`
+
+For each release:
+
+* `Archive\v<VERSION>` is created from the published Git tag only.
+* The archive is not copied from the current working tree.
+* `ARCHIVE_INFO.md` is added locally inside the archive folder.
+* The archive is validated against the tag before the release is considered complete.
+* `Archive/` remains local-only and is not committed, pushed, or included in release tags.
+
+A release is not complete without a successfully created and validated local archive snapshot.
+
 ## Development Principle
 
 > As modular as necessary, as simple as possible.
