@@ -48,6 +48,8 @@ Note:
 
 ### 0.0.3 - Aiming & Crosshair
 
+Status: In Progress
+
 Goals:
 
 - visible crosshair
@@ -55,6 +57,14 @@ Goals:
 - defined aim/look bounds
 - clean screen/world aiming foundation
 - preparation for hit calculation
+
+Current implementation direction:
+
+- normalized screen-space aim position in `AArcadeRailPlayerPawn`
+- mouse aim as the primary mouse input for crosshair movement
+- gamepad aim through the right stick with deadzone and framerate-independent movement
+- technical C++ crosshair drawn by the project HUD
+- public aim API for normalized position, pixel position, and world ray preparation
 
 ### 0.0.4 - Weapon & Hit System
 

@@ -56,6 +56,8 @@ Hinweis:
 
 ### Version 0.0.3 - Aiming & Crosshair
 
+Status: In Progress
+
 Ziele:
 
 * sichtbares Fadenkreuz
@@ -63,6 +65,14 @@ Ziele:
 * definierte Ziel-/Look-Grenzen
 * saubere Screen-/World-Aiming-Grundlage
 * Vorbereitung fuer Trefferberechnung
+
+Aktuelle Umsetzungsrichtung:
+
+* normalisierte Screen-Space-Aim-Position im `AArcadeRailPlayerPawn`
+* Mouse Aim als primaerer Maus-Input fuer die Fadenkreuzbewegung
+* Gamepad Aim ueber rechten Stick mit Deadzone und framerate-unabhaengiger Bewegung
+* technisches C++-Crosshair ueber das Projekt-HUD
+* oeffentliche Aim-API fuer normalisierte Position, Pixelposition und World-Ray-Vorbereitung
 
 ---
 

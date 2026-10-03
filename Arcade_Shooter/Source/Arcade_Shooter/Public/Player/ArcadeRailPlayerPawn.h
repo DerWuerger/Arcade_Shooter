@@ -17,6 +17,15 @@ class ARCADE_SHOOTER_API AArcadeRailPlayerPawn : public APawn
 public:
 	AArcadeRailPlayerPawn();
 
+	UFUNCTION(BlueprintPure, Category = "Aim")
+	FVector2D GetAimScreenPositionNormalized() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Aim")
+	bool GetAimScreenPositionPixels(FVector2D& OutAimScreenPositionPixels) const;
+
+	UFUNCTION(BlueprintCallable, Category = "Aim")
+	bool GetAimWorldRay(FVector& OutWorldOrigin, FVector& OutWorldDirection) const;
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -26,11 +35,17 @@ private:
 	void UpdateRailTransform(float DeltaTime);
 	void UpdateCameraLook();
 	void ApplyGamepadLook(float DeltaTime);
+	void ApplyGamepadAim(float DeltaTime);
+	void ClampAimPosition();
 
 	void HandleMouseYaw(float AxisValue);
 	void HandleMousePitch(float AxisValue);
 	void HandleGamepadYaw(float AxisValue);
 	void HandleGamepadPitch(float AxisValue);
+	void HandleMouseAimX(float AxisValue);
+	void HandleMouseAimY(float AxisValue);
+	void HandleGamepadAimX(float AxisValue);
+	void HandleGamepadAimY(float AxisValue);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> SceneRoot;
@@ -62,9 +77,32 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input", meta = (ClampMin = "0.0", ClampMax = "1.0"))
 	float GamepadLookDeadZone = 0.15f;
 
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float AimMinX = 0.05f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float AimMaxX = 0.95f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float AimMinY = 0.05f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float AimMaxY = 0.95f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ToolTip = "Normalized screen-space movement added per mouse input unit. Mouse input is already a delta and is not multiplied by DeltaTime."))
+	float MouseAimSensitivity = 0.0025f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0"))
+	float GamepadAimSpeed = 0.75f;
+
+	UPROPERTY(EditAnywhere, Category = "Aim", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float GamepadAimDeadZone = 0.15f;
+
 	float CurrentDistance = 0.0f;
 	float LookYaw = 0.0f;
 	float LookPitch = 0.0f;
 	float GamepadYawInput = 0.0f;
 	float GamepadPitchInput = 0.0f;
+	FVector2D AimScreenPositionNormalized = FVector2D(0.5f, 0.5f);
+	FVector2D GamepadAimInput = FVector2D::ZeroVector;
 };

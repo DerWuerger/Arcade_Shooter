@@ -4,6 +4,7 @@
 #include "Components/InputComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/SplineComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "Rail/ArcadeRailPath.h"
 
 AArcadeRailPlayerPawn::AArcadeRailPlayerPawn()
@@ -21,12 +22,73 @@ AArcadeRailPlayerPawn::AArcadeRailPlayerPawn()
 	CameraComponent->bUsePawnControlRotation = false;
 }
 
+FVector2D AArcadeRailPlayerPawn::GetAimScreenPositionNormalized() const
+{
+	return AimScreenPositionNormalized;
+}
+
+bool AArcadeRailPlayerPawn::GetAimScreenPositionPixels(FVector2D& OutAimScreenPositionPixels) const
+{
+	const UWorld* World = GetWorld();
+	if (!IsValid(World))
+	{
+		return false;
+	}
+
+	const APlayerController* PlayerController = World->GetFirstPlayerController();
+	if (!IsValid(PlayerController))
+	{
+		return false;
+	}
+
+	int32 ViewportSizeX = 0;
+	int32 ViewportSizeY = 0;
+	PlayerController->GetViewportSize(ViewportSizeX, ViewportSizeY);
+	if (ViewportSizeX <= 0 || ViewportSizeY <= 0)
+	{
+		return false;
+	}
+
+	OutAimScreenPositionPixels = FVector2D(
+		AimScreenPositionNormalized.X * static_cast<float>(ViewportSizeX),
+		AimScreenPositionNormalized.Y * static_cast<float>(ViewportSizeY));
+	return true;
+}
+
+bool AArcadeRailPlayerPawn::GetAimWorldRay(FVector& OutWorldOrigin, FVector& OutWorldDirection) const
+{
+	FVector2D AimScreenPositionPixels;
+	if (!GetAimScreenPositionPixels(AimScreenPositionPixels))
+	{
+		return false;
+	}
+
+	const UWorld* World = GetWorld();
+	if (!IsValid(World))
+	{
+		return false;
+	}
+
+	APlayerController* PlayerController = World->GetFirstPlayerController();
+	if (!IsValid(PlayerController))
+	{
+		return false;
+	}
+
+	return PlayerController->DeprojectScreenPositionToWorld(
+		AimScreenPositionPixels.X,
+		AimScreenPositionPixels.Y,
+		OutWorldOrigin,
+		OutWorldDirection);
+}
+
 void AArcadeRailPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
 	UpdateRailTransform(0.0f);
 	UpdateCameraLook();
+	ClampAimPosition();
 }
 
 void AArcadeRailPlayerPawn::Tick(float DeltaTime)
@@ -35,6 +97,7 @@ void AArcadeRailPlayerPawn::Tick(float DeltaTime)
 
 	UpdateRailTransform(DeltaTime);
 	ApplyGamepadLook(DeltaTime);
+	ApplyGamepadAim(DeltaTime);
 	UpdateCameraLook();
 }
 
@@ -42,10 +105,10 @@ void AArcadeRailPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_MouseYaw")), this, &AArcadeRailPlayerPawn::HandleMouseYaw);
-	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_MousePitch")), this, &AArcadeRailPlayerPawn::HandleMousePitch);
-	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_GamepadYaw")), this, &AArcadeRailPlayerPawn::HandleGamepadYaw);
-	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_GamepadPitch")), this, &AArcadeRailPlayerPawn::HandleGamepadPitch);
+	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_MouseAimX")), this, &AArcadeRailPlayerPawn::HandleMouseAimX);
+	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_MouseAimY")), this, &AArcadeRailPlayerPawn::HandleMouseAimY);
+	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_GamepadAimX")), this, &AArcadeRailPlayerPawn::HandleGamepadAimX);
+	PlayerInputComponent->BindAxis(FName(TEXT("ArcadeRail_GamepadAimY")), this, &AArcadeRailPlayerPawn::HandleGamepadAimY);
 }
 
 void AArcadeRailPlayerPawn::UpdateRailTransform(float DeltaTime)
@@ -93,6 +156,27 @@ void AArcadeRailPlayerPawn::ApplyGamepadLook(float DeltaTime)
 	LookPitch += EffectivePitchInput * GamepadLookRate * DeltaTime;
 }
 
+void AArcadeRailPlayerPawn::ApplyGamepadAim(float DeltaTime)
+{
+	const float EffectiveAimX = FMath::Abs(GamepadAimInput.X) >= GamepadAimDeadZone ? GamepadAimInput.X : 0.0f;
+	const float EffectiveAimY = FMath::Abs(GamepadAimInput.Y) >= GamepadAimDeadZone ? GamepadAimInput.Y : 0.0f;
+
+	AimScreenPositionNormalized.X += EffectiveAimX * GamepadAimSpeed * DeltaTime;
+	AimScreenPositionNormalized.Y -= EffectiveAimY * GamepadAimSpeed * DeltaTime;
+	ClampAimPosition();
+}
+
+void AArcadeRailPlayerPawn::ClampAimPosition()
+{
+	const float MinX = FMath::Min(AimMinX, AimMaxX);
+	const float MaxX = FMath::Max(AimMinX, AimMaxX);
+	const float MinY = FMath::Min(AimMinY, AimMaxY);
+	const float MaxY = FMath::Max(AimMinY, AimMaxY);
+
+	AimScreenPositionNormalized.X = FMath::Clamp(AimScreenPositionNormalized.X, MinX, MaxX);
+	AimScreenPositionNormalized.Y = FMath::Clamp(AimScreenPositionNormalized.Y, MinY, MaxY);
+}
+
 void AArcadeRailPlayerPawn::HandleMouseYaw(float AxisValue)
 {
 	LookYaw += AxisValue * MouseLookSensitivity;
@@ -113,4 +197,26 @@ void AArcadeRailPlayerPawn::HandleGamepadYaw(float AxisValue)
 void AArcadeRailPlayerPawn::HandleGamepadPitch(float AxisValue)
 {
 	GamepadPitchInput = AxisValue;
+}
+
+void AArcadeRailPlayerPawn::HandleMouseAimX(float AxisValue)
+{
+	AimScreenPositionNormalized.X += AxisValue * MouseAimSensitivity;
+	ClampAimPosition();
+}
+
+void AArcadeRailPlayerPawn::HandleMouseAimY(float AxisValue)
+{
+	AimScreenPositionNormalized.Y -= AxisValue * MouseAimSensitivity;
+	ClampAimPosition();
+}
+
+void AArcadeRailPlayerPawn::HandleGamepadAimX(float AxisValue)
+{
+	GamepadAimInput.X = AxisValue;
+}
+
+void AArcadeRailPlayerPawn::HandleGamepadAimY(float AxisValue)
+{
+	GamepadAimInput.Y = AxisValue;
 }
