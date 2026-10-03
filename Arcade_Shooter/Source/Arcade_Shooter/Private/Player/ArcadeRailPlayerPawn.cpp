@@ -162,7 +162,7 @@ void AArcadeRailPlayerPawn::ApplyGamepadAim(float DeltaTime)
 	const float EffectiveAimY = FMath::Abs(GamepadAimInput.Y) >= GamepadAimDeadZone ? GamepadAimInput.Y : 0.0f;
 
 	AimScreenPositionNormalized.X += EffectiveAimX * GamepadAimSpeed * DeltaTime;
-	AimScreenPositionNormalized.Y -= EffectiveAimY * GamepadAimSpeed * DeltaTime;
+	AimScreenPositionNormalized.Y += EffectiveAimY * GamepadAimSpeed * DeltaTime;
 	ClampAimPosition();
 }
 
