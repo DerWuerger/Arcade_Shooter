@@ -215,7 +215,7 @@ Zur Untersuchung oder Wiederherstellung einer alten Version:
 
 ## 12. Aktueller Stand
 
-Aktueller veröffentlichter Projektstand: `0.0.2 - Player & Camera Foundation`.
+Aktueller veröffentlichter Projektstand: `0.0.3 - Aiming & Crosshair`.
 
 Bestehende Archive unter `Archive/` bleiben unverändert. Diese Policy führt keine neue Projektversion ein, erhöht keine Versionsnummer und erstellt keinen neuen Versions-Tag.
 

@@ -113,25 +113,27 @@ Important project documentation:
 
 ## Current Status
 
-**Version:** `0.0.2`
+**Version:** `0.0.3`
 
-**Status:** Player & Camera Foundation completed and published
+**Status:** Aiming & Crosshair completed and published
 
-**Completed in 0.0.2:**
+**Completed in 0.0.3:**
 
 * `AArcadeRailPlayerPawn`
-* camera component on the player pawn
-* player pawn rail movement
-* rail-relative camera look
-* mouse yaw and pitch look
-* gamepad look implementation
-* yaw and pitch clamps
-* stop at rail end
-* movement and look kept logically separate
+* normalized screen-space aim state
+* mouse aim for crosshair movement
+* gamepad aim for crosshair movement
+* technical C++ crosshair drawn by the project HUD
+* aim clamps
+* screen pixel aim position API
+* world ray aim API
+* required GameMode, PlayerController and HUD wiring
+* camera look remains independent from crosshair aim
+* vertical gamepad aim direction corrected
 
-**Known note:** Gamepad input implemented; physical controller validation pending.
+**Validation:** Build, PIE, mouse aim, crosshair control and physical gamepad aiming were validated. Gamepad left/right and up/down movement are confirmed.
 
-**Next milestone:** `0.0.3 - Aiming & Crosshair`
+**Next milestone:** `0.0.4 - Weapon & Hit System`
 
 ## Version Approval
 
@@ -145,7 +147,7 @@ Until approval, milestones remain in development, review or release-candidate st
 
 ## Release Archive Workflow
 
-Every future official version release must create and validate a local archive snapshot after the release commit, `main` push, version tag creation, and tag push are complete.
+Every official version release must create and validate a local archive snapshot after the release commit, `main` push, version tag creation, and tag push are complete.
 
 Archive root:
 

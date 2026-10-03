@@ -4,8 +4,8 @@ Arcade_Shooter is an Unreal Engine C++ project.
 
 ## Current Version
 
-- Version: 0.0.2
-- Name: Player & Camera Foundation
+- Version: 0.0.3
+- Name: Aiming & Crosshair
 - Status: Completed
 
 ## Rail Foundation
@@ -67,6 +67,33 @@ Default values:
 - `GamepadLookRate = 120.0f`
 - `GamepadLookDeadZone = 0.15f`
 
+## Aiming & Crosshair
+
+Version 0.0.3 establishes the first technical aiming and crosshair foundation.
+
+Included functionality:
+
+- normalized screen-space aim position in `AArcadeRailPlayerPawn`
+- mouse aim for crosshair movement
+- gamepad aim through the right stick
+- aim bounds / clamps
+- technical C++ crosshair drawn by the project HUD
+- screen pixel aim position API
+- world ray aim API for later hit calculation
+- required GameMode, PlayerController and HUD wiring
+- camera look remains independent from crosshair aim
+- vertical gamepad aim direction corrected
+
+Default values:
+
+- `AimMinX = 0.05f`
+- `AimMaxX = 0.95f`
+- `AimMinY = 0.05f`
+- `AimMaxY = 0.95f`
+- `MouseAimSensitivity = 0.0025f`
+- `GamepadAimSpeed = 0.75f`
+- `GamepadAimDeadZone = 0.15f`
+
 ## Validation
 
 - Build successful
@@ -88,7 +115,13 @@ Default values:
 - Mouse look during rail curves validated
 - Look does not affect rail movement
 - Stop at the spline end confirmed
+- Mouse aim validated
+- Crosshair visible and controllable
+- Gamepad recognized
+- Gamepad left/right aim validated
+- Gamepad up/down aim validated
+- Camera remains independent from crosshair aim
+- Aim clamps validated
+- PIE validated
 
 Known note: the installed MSVC version is newer than the Unreal Engine preferred toolchain version. The build still succeeds.
-
-Gamepad note: Gamepad input implemented; physical controller validation pending.

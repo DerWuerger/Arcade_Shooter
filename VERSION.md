@@ -1,19 +1,22 @@
 # Current Version
 
-Version: 0.0.2
+Version: 0.0.3
 
-Name: Player & Camera Foundation
+Name: Aiming & Crosshair
 
 Status: Completed and published
 
 Approval Status:
-Released
+Approved / Released
+
+Approved By:
+Jens Wuerger
 
 Project Approval Authority:
 Jens Wuerger
 
 Current Milestone:
-0.0.2 - Player & Camera Foundation
+0.0.3 - Aiming & Crosshair
 
 Completed Functionality:
 
@@ -21,56 +24,50 @@ Completed Functionality:
 - Editable rail splines
 - `AArcadeRailMover`
 - `AArcadeRailPlayerPawn`
-- `SceneRoot` and `CameraComponent` player pawn foundation
-- Editable `RailPath` reference on the player pawn
-- Editable `MoveSpeed`
-- Automatic player pawn movement along an assigned rail
-- Rail position and base rotation applied to the player pawn
-- Camera look offset relative to the rail base direction
-- Mouse yaw and pitch look
-- Gamepad look input mappings and runtime handling
-- Yaw and pitch limits
-- Movement and look direction kept logically separate
-- Stop at spline end
-- No loop behavior
-- Safe idle behavior when no rail is assigned
+- Player and camera foundation
+- Rail-following player pawn movement
+- Rail-relative camera look
+- Normalized screen-space aim state
+- Mouse aim input for crosshair movement
+- Gamepad aim input for crosshair movement
+- Technical C++ crosshair drawn by the project HUD
+- Aim bounds / clamps
+- Screen pixel aim position API
+- World ray aim API
+- Required GameMode, PlayerController and HUD wiring
+- Camera look remains independent from crosshair aim
+- Vertical gamepad aim direction corrected
 
-Current Player / Camera Defaults:
+Current Aim Defaults:
 
-- `MoveSpeed = 300.0f`
-- `MaxLookYaw = 60.0f`
-- `MaxLookPitchUp = 35.0f`
-- `MaxLookPitchDown = 35.0f`
-- `MouseLookSensitivity = 0.25f`
-- `GamepadLookRate = 120.0f`
-- `GamepadLookDeadZone = 0.15f`
+- `AimMinX = 0.05f`
+- `AimMaxX = 0.95f`
+- `AimMinY = 0.05f`
+- `AimMaxY = 0.95f`
+- `MouseAimSensitivity = 0.0025f`
+- `GamepadAimSpeed = 0.75f`
+- `GamepadAimDeadZone = 0.15f`
 
 Validation Summary:
 
 - Build successful
-- `AArcadeRailPlayerPawn` available in the Unreal Editor
-- `RailPath` assignable in the Details panel
-- Curved temporary test rail with 5 spline points validated
-- Left curve validated
-- Right curve validated
-- Stable rail rotation confirmed
-- No visible rotation jumps
-- No camera roll
-- No visible jitter
-- Mouse yaw validated
-- Left and right yaw clamps validated
-- Pitch-up and pitch-down clamps validated
-- Mouse look during rail curves validated
-- Look direction does not alter rail movement
-- Stop at rail end confirmed
+- PIE visual validation successful
+- Mouse aim validated
+- Crosshair visible and controllable
+- Physical gamepad recognized
+- Gamepad left/right aim validated
+- Gamepad up/down aim validated after vertical direction fix
+- Aim clamps validated
+- Camera remains independent from crosshair aim
+- No relevant runtime errors reported during manual validation
 
 Known Notes:
 
-- Gamepad input implemented; physical controller validation pending.
 - The installed MSVC version is newer than the Unreal Engine preferred toolchain version. The build still succeeds.
+- `sky.launch_app` may report Unreal missing modules in this environment; directly opening the `.uproject` works.
 
 Next Milestone:
-0.0.3 - Aiming & Crosshair
+0.0.4 - Weapon & Hit System
 
 ---
 

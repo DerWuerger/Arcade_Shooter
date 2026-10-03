@@ -1,5 +1,55 @@
 # Version History
 
+## 0.0.3 - Aiming & Crosshair
+
+Status: Completed
+
+Version 0.0.3 establishes the first technical aiming and crosshair foundation for the arcade shooter loop.
+
+Included functionality:
+
+- Aiming Foundation
+  - normalized screen-space aim state in `AArcadeRailPlayerPawn`
+  - aim bounds / clamps
+  - public normalized aim position API
+  - screen pixel aim position API
+  - world ray aim API for later hit calculation
+- Mouse Aim
+  - mouse X controls horizontal crosshair movement
+  - mouse Y controls vertical crosshair movement
+  - mouse aim remains separate from camera look
+- Gamepad Aim
+  - right-stick X controls horizontal crosshair movement
+  - right-stick Y controls vertical crosshair movement
+  - gamepad aim deadzone
+  - framerate-independent gamepad aim movement
+- Crosshair
+  - technical C++ crosshair drawn by the project HUD
+  - crosshair follows the player pawn aim state
+- Wiring
+  - project GameMode assigns the required PlayerController and HUD classes
+  - PlayerController shows and configures the mouse cursor for aiming
+
+Validation:
+
+- Build successful
+- PIE visually validated
+- Mouse aim validated
+- Crosshair visible and controllable
+- Physical gamepad recognized
+- Gamepad left/right aim successful
+- Gamepad up/down aim successful
+- Aim clamps validated
+- Camera remains independent from crosshair aim
+- No relevant runtime errors reported during manual validation
+
+Fixed:
+
+- Corrected vertical gamepad aim direction in `ApplyGamepadAim()`.
+- The gamepad Y update now uses `AimScreenPositionNormalized.Y += EffectiveAimY * GamepadAimSpeed * DeltaTime;` so stick up moves the crosshair up and stick down moves it down.
+
+Known note: the installed MSVC version is newer than the Unreal Engine preferred toolchain version. The build still succeeds.
+
 ## 0.0.2 - Player & Camera Foundation
 
 Status: Completed

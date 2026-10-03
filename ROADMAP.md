@@ -52,29 +52,36 @@ Hinweis:
 
 ---
 
-## Planned
-
 ### Version 0.0.3 - Aiming & Crosshair
 
-Status: In Progress
+Status: Completed and published
 
-Ziele:
+Enthalten:
 
 * sichtbares Fadenkreuz
-* Zielbewegung per Maus und Controller
-* definierte Ziel-/Look-Grenzen
-* saubere Screen-/World-Aiming-Grundlage
-* Vorbereitung fuer Trefferberechnung
+* normalisierte Screen-Space-Aim-Position
+* Zielbewegung per Maus
+* Zielbewegung per Gamepad
+* definierte Aim-Clamps
+* technische C++-Crosshair-Darstellung
+* Screen-Pixelposition-API
+* World-Ray-API
+* GameMode-, PlayerController- und HUD-Verkabelung
+* Kamera bleibt vom Crosshair-Aim getrennt
+* vertikale Gamepad-Y-Richtung korrigiert
 
-Aktuelle Umsetzungsrichtung:
+Validierung:
 
-* normalisierte Screen-Space-Aim-Position im `AArcadeRailPlayerPawn`
-* Mouse Aim als primaerer Maus-Input fuer die Fadenkreuzbewegung
-* Gamepad Aim ueber rechten Stick mit Deadzone und framerate-unabhaengiger Bewegung
-* technisches C++-Crosshair ueber das Projekt-HUD
-* oeffentliche Aim-API fuer normalisierte Position, Pixelposition und World-Ray-Vorbereitung
+* Build erfolgreich
+* PIE visuell geprueft
+* Mouse Aim geprueft
+* Crosshair geprueft
+* physischer Gamepad-Test erfolgreich
+* horizontale und vertikale Gamepad-Steuerung erfolgreich
 
 ---
+
+## Planned
 
 ### Version 0.0.4 - Weapon & Hit System
 

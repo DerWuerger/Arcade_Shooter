@@ -44,27 +44,33 @@ Note:
 
 - Gamepad input implemented; physical controller validation pending.
 
-## Planned
-
 ### 0.0.3 - Aiming & Crosshair
 
-Status: In Progress
+Status: Completed and published
 
-Goals:
+Included:
 
 - visible crosshair
-- aim movement with mouse and controller
-- defined aim/look bounds
-- clean screen/world aiming foundation
-- preparation for hit calculation
-
-Current implementation direction:
-
 - normalized screen-space aim position in `AArcadeRailPlayerPawn`
-- mouse aim as the primary mouse input for crosshair movement
+- mouse aim for crosshair movement
 - gamepad aim through the right stick with deadzone and framerate-independent movement
 - technical C++ crosshair drawn by the project HUD
 - public aim API for normalized position, pixel position, and world ray preparation
+- defined aim bounds / clamps
+- required GameMode, PlayerController and HUD wiring
+- camera look remains independent from crosshair aim
+- corrected vertical gamepad aim direction
+
+Validation:
+
+- build successful
+- PIE visually validated
+- mouse aim validated
+- crosshair validated
+- physical gamepad test successful
+- horizontal and vertical gamepad aiming successful
+
+## Planned
 
 ### 0.0.4 - Weapon & Hit System
 
